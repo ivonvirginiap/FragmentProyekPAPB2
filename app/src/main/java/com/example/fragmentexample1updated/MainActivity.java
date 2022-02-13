@@ -8,13 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button openButton;
     private Boolean isFragmentDisplayed = false;
-
-    private final String FRAGMENT_STATE = "fragment-state";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        if(savedInstanceState != null){
-            isFragmentDisplayed = savedInstanceState.getBoolean(FRAGMENT_STATE);
-            if(isFragmentDisplayed){
-                openButton.setText(R.string.close);
-            }
-        }
     }
 
     private void openFragment(){
@@ -61,11 +53,5 @@ public class MainActivity extends AppCompatActivity {
 
         isFragmentDisplayed = false;
         openButton.setText(R.string.open);
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(FRAGMENT_STATE, isFragmentDisplayed);
     }
 }
